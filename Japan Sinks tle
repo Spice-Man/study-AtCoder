@@ -1,0 +1,48 @@
+# study-AtCoder
+import java.io.*;
+import  java.util.*;
+
+import static java.lang.System.in;
+
+class Main{
+    public static void main(String[] args)throws IOException{
+      Scanner sc = new Scanner(System.in);
+      int field = sc.nextInt();
+      int jRyouiki[] = new int[field];
+      int high = 0;
+      for(int i = 0; i < field; i++){
+        jRyouiki[i] = sc.nextInt();
+        if(high < jRyouiki[i]){
+          high = jRyouiki[i];
+        }
+      }
+      
+      int umi = 0;
+      int island = 0;
+      int islandcnt = 0;
+      int maxIsland = 0;
+      
+      while(high > umi){
+        for(int i = 0; i < field; i++){
+          if(umi < jRyouiki[i]){
+            island = i + 1;
+             if(i == (field-1)){
+              islandcnt++;
+            }
+          }else{
+            if(island != 0 ){
+              islandcnt++;
+            }
+            island = 0;
+          }
+        }
+        if(islandcnt > maxIsland){
+        	maxIsland = islandcnt;
+        }
+        umi++;
+        islandcnt = 0;
+        island = 0;
+      }
+      System.out.println(maxIsland);
+    }
+}
